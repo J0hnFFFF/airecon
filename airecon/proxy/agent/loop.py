@@ -238,6 +238,7 @@ class AgentLoop(_ValidatorMixin, _FormatterMixin, _WorkspaceMixin, _ExecutorMixi
             self._consecutive_failures = 0
             # NOTE: Do NOT clear _executed_tool_counts here — dedup must persist
             # across messages within the same session. It is only cleared in reset().
+            last_iteration_had_tools = False
 
             while self.state.iteration < self.state.max_iterations:
                 if self._stop_requested:
@@ -723,8 +724,9 @@ class AgentLoop(_ValidatorMixin, _FormatterMixin, _WorkspaceMixin, _ExecutorMixi
                     for signal in hallucination_signals
                 )
 
-                # Only warn if no tools have been executed yet (first iteration without tools)
-                has_prior_tool_runs = bool(self.state.tool_history)
+                # Only warn if no tools were executed in the previous iteration
+                # has_prior_tool_runs = bool(self.state.tool_history)
+                has_prior_tool_runs = last_iteration_had_tools
                 if has_hallucination_risk and not tool_calls_acc and not has_prior_tool_runs:
                     self.state.conversation.append(
                         {
@@ -797,6 +799,7 @@ class AgentLoop(_ValidatorMixin, _FormatterMixin, _WorkspaceMixin, _ExecutorMixi
                         seen_tools.add(tc_str)
                         deduped_tool_calls.append(tc)
                 tool_calls_acc = deduped_tool_calls
+                last_iteration_had_tools = bool(tool_calls_acc)
 
                 if not content_acc.strip():
                     tool_names_str = ", ".join(

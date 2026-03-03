@@ -1060,7 +1060,9 @@ class _ExecutorMixin:
         if base_url:
             cmd_parts.append(f'--base-url "{base_url}"')
         if auth_header:
-            cmd_parts.append(f'--header "Authorization: {auth_header}"')
+            # cmd_parts.append(f'--header "Authorization: {auth_header}"')
+            import shlex
+            cmd_parts.append(f"--header {shlex.quote(f'Authorization: {auth_header}')}")
         if checks:
             cmd_parts.append(f'--checks {",".join(checks)}')
         cmd_parts.append(f"--hypothesis-max-examples {max_examples}")

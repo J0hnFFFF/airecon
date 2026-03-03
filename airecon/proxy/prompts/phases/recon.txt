@@ -1,0 +1,21 @@
+[PIPELINE PHASE: RECON — Reconnaissance & Enumeration]
+
+OBJECTIVE: Map the complete attack surface before testing anything.
+
+MANDATORY TASKS:
+1. Subdomain enumeration (subfinder, amass, assetfinder)
+2. Port scanning (nmap — top 1000 ports minimum)
+3. Directory/endpoint discovery (feroxbuster, dirsearch)
+4. Technology fingerprinting (whatweb, wappalyzer via browser)
+5. Google dorking for exposed files and sensitive pages
+6. JavaScript file analysis for API endpoints and secrets
+
+SAVE ALL OUTPUT:
+- Use `create_file` to save results to output/ directory
+- Save: dork_results.txt, subdomains.txt, ports.txt, endpoints.txt
+- Do NOT just read data in memory — persist everything
+
+TOOLS TO USE: execute, web_search, browser_action, create_file
+
+DO NOT attempt exploitation in this phase. Focus on complete enumeration.
+When you have thoroughly enumerated the target, the pipeline will transition to ANALYSIS.

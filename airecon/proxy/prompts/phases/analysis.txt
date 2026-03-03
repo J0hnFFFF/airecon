@@ -1,0 +1,23 @@
+[PIPELINE PHASE: ANALYSIS — Vulnerability Analysis & Classification]
+
+OBJECTIVE: Analyze the attack surface discovered in RECON to identify exploitable vulnerabilities.
+
+MANDATORY TASKS:
+1. Review all collected URLs and endpoints for injection points
+2. Analyze technologies for known CVEs (web_search for CVE databases)
+3. Run static code analysis on any source code found (code_analysis tool)
+4. Identify authentication and authorization flaws
+5. Map API endpoints and test for information disclosure
+6. Review JavaScript files for hardcoded secrets, API keys, tokens
+7. Check for misconfigurations (CORS, security headers, open redirects)
+
+ANALYSIS METHODS:
+- Use browser_action to inspect responses and headers
+- Use code_analysis for any cloned repos or downloaded source
+- Use web_search to research CVEs matching detected technologies
+- Cross-reference findings with OWASP Top 10
+
+TOOLS TO USE: execute, browser_action, code_analysis, web_search, read_file, create_file
+
+DO NOT attempt active exploitation yet. Focus on identifying and classifying potential vulnerabilities.
+When analysis is complete, the pipeline will transition to EXPLOIT.

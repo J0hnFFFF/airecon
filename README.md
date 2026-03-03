@@ -1,4 +1,4 @@
-# AIRecon (智能重构)
+# AI Recon  
 
 **我们对 `https://github.com/pikpikcu/airecon` 进行优化， 感谢原作者的开源精神。**
 

@@ -10,10 +10,10 @@ NC='\033[0m' # No Color
 echo -e "${GREEN}[+] Checking environment...${NC}"
 
 # Define system python
-PYTHON_CMD="python3"
-if [ -f "/usr/bin/python3" ]; then
-    PYTHON_CMD="/usr/bin/python3"
-fi
+# PYTHON_CMD="python3"
+# if [ -f "/usr/bin/python3" ]; then
+#    PYTHON_CMD="/usr/bin/python3"
+#fi
 
 echo -e "${GREEN}[+] Using Python: $PYTHON_CMD${NC}"
 
